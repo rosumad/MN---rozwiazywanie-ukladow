@@ -1,0 +1,17 @@
+﻿Stopień układu równań ma być dowolny !! n dowolne!!
+macierz - tablica dwuwymiarowa, wektor - tablica jednowymiarowa
+identyfikatory - zachowac i, j, k
+funkcja a) - bez kontroli wczytywania danych
+funkcja d) - generowanie końcowego raportu - dane wejściowe (macierz A, wektor B), dane pośrednie - macierze L i U, wyniki obliczeń - wektory Y i X.
+mantysa + cecha, mantysa = 10 cyfr znaczacych.
+zaczynamy od indeksów 1,1.
+
+Wszystkie operacje na liczbach zmiennoprzecinkowych - typ double + typ float.
+
+SPRAWOZDANIE
+strona tytułowa - numer sekcji, numer grupy, skład podsekcji, temat zadania (dostarczona karta). Tekst programu wydrukować, raport to dokładnie wynik funkcji D.
+podpunkt b) jak przygotowac plik z macierza A i wektorem B
+c) wyznaczyć bezwzględny błąd rozwiązania, |Xd - Xp| (wektor dokładny - wektor wyjściowy).
+d) skomentować 
+
+SPRAWDZAMY czy jest dzielenie przez zero!!!
