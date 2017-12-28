@@ -119,6 +119,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="zestaw1.txt" />
+    <Text Include="zestaw2.txt" />
+    <Text Include="zestaw3.txt" />
+    <Text Include="zestaw4.txt" />
+    <Text Include="zestaw5.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

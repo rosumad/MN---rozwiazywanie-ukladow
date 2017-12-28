@@ -23,5 +23,17 @@
     <Text Include="zestaw1.txt">
       <Filter>Pliki zasobów</Filter>
     </Text>
+    <Text Include="zestaw2.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
+    <Text Include="zestaw3.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
+    <Text Include="zestaw4.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
+    <Text Include="zestaw5.txt">
+      <Filter>Pliki zasobów</Filter>
+    </Text>
   </ItemGroup>
 </Project>
