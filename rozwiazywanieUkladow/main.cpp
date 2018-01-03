@@ -5,6 +5,10 @@
 #include<iomanip>
 using namespace std;
 
+const int dokladnoscMantysy = 10;
+const int szerokoscWyswietlaniaLiczby = 16;
+const string zestawDoObliczen = "zestaw3.txt";
+
 void funkcjaA(vector< vector<double> >& A, vector<double>& B, 
 	int &n) {
 	cout << "Podaj rozmiar macierzy n: ";
@@ -14,7 +18,7 @@ void funkcjaA(vector< vector<double> >& A, vector<double>& B,
 	vector<double> tempB(n + 1);
 	A = tempA;
 	B = tempB;
-	ifstream plik("zestaw5.txt", ios::in);
+	ifstream plik(zestawDoObliczen, ios::in);
 
 	for (int p = 1; p <= n; p++) {
 		for (int r = 1; r <= n; r++)
@@ -30,7 +34,7 @@ void funkcjaA(vector< vector<double> >& A, vector<double>& B,
 bool funkcjaB(vector< vector<double> > A, vector< vector<double> >& L, 
 	vector< vector<double> >& U, int n) {
 	if (A[1][1] == 0.0) { // U[1][1] bedzie rowne A[1][1], a pozniej bedziemy przez nie dzielic, wiec nie moze byc rowne 0.
-		cout << " Wartosc A[1][1] jest rowna 0, przerywam liczenie" << endl;
+		cout << "Wartosc A[1][1] jest rowna 0, przerywam liczenie" << endl;
 		return false;
 	}
 	
@@ -58,7 +62,10 @@ bool funkcjaB(vector< vector<double> > A, vector< vector<double> >& L,
 
 		for (int j = i + 1; j <= n; j++) {
 			if (U[i][i] == 0.0) {  //  Blad dzielenia przez 0.
-				cout << " Wartosc U[" << i << "][" << i << "] jest rowna 0, przerywam liczenie" << endl;
+				ofstream raportWynikowy;
+				raportWynikowy.open("raport.txt", ios::out | ios::trunc);
+				raportWynikowy << "Wartosc U[" << i << "][" << i << "] jest rowna 0, przerywam liczenie" << endl;
+				raportWynikowy.close();
 				return false;
 			}
 
@@ -91,13 +98,19 @@ bool funkcjaC(vector<double> B, vector< vector<double> > L,
 	}
 
 	if (U[n][n] == 0.0) {  //  Ten przypadek nie moze sie zdarzyc, bo w funkcji B sprawdzalismy juz czy U[n][n] nie jest rowne 0.
-		cout << " Wartosc U[" << n << "][" << n << "] jest rowna 0, przerywam liczenie" << endl;
+		ofstream raportWynikowy;
+		raportWynikowy.open("raport.txt", ios::out | ios::trunc);
+		cout << "Wartosc U[" << n << "][" << n << "] jest rowna 0, przerywam liczenie" << endl;
+		raportWynikowy.close();
 		return false;
 	}
 	X[n] = Y[n] / U[n][n];
 	for (int i = n - 1; i >= 1; i--) {
 		if (U[i][i] == 0.0) {  //  Ten przypadek nie moze sie zdarzyc, bo w funkcji B sprawdzalismy juz czy U[i][i] nie jest rowne 0.
-			cout << " Wartosc U[" << i << "][" << i << "] jest rowna 0, przerywam liczenie" << endl;
+			ofstream raportWynikowy;
+			raportWynikowy.open("raport.txt", ios::out | ios::trunc);
+			cout << "Wartosc U[" << i << "][" << i << "] jest rowna 0, przerywam liczenie" << endl;
+			raportWynikowy.close();
 			return false;
 		}
 		wynikSumy = 0.0;
@@ -114,40 +127,46 @@ void funkcjaD(vector< vector<double> > A, vector<double> B,
 	vector< vector<double> > L, vector< vector<double> > U, 
 	vector<double> X, vector<double> Y, 
 	int n) {
-	cout << " Macierz A:" << endl;
+
+	ofstream raportWynikowy;
+	raportWynikowy.open("raport.txt", ios::out | ios::trunc);
+	raportWynikowy << setprecision(dokladnoscMantysy) << fixed;
+	raportWynikowy << "Macierz A:" << endl;
 	for (int p = 1; p <= n; p++) {
 		for (int r = 1; r <= n; r++) {
-			cout << right << setw(12) << A[p][r];
+			raportWynikowy << right << setw(szerokoscWyswietlaniaLiczby) <<A[p][r];
 		}
-		cout << endl;
+		raportWynikowy << endl;
 	}
-	cout << " Wektor B:" << endl;
+	raportWynikowy << "Wektor B:" << endl;
 	for (int p = 1; p <= n; p++)
-		cout << right << setw(8) << B[p] << endl;
+		raportWynikowy << right << setw(szerokoscWyswietlaniaLiczby) << B[p] << endl;
 
-	cout << " Macierz L: " << endl;
+	raportWynikowy << "Macierz L: " << endl;
 	for (int p = 1; p <= n; p++) {
 		for (int r = 1; r <= n; r++) {
-			cout << right << setw(12) << L[p][r];
+			raportWynikowy << right << setw(szerokoscWyswietlaniaLiczby) << L[p][r];
 		}
-		cout << endl;
+		raportWynikowy << endl;
 	}
 
-	cout << " Macierz U: " << endl;
+	raportWynikowy << "Macierz U: " << endl;
 	for (int p = 1; p <= n; p++) {
 		for (int r = 1; r <= n; r++) {
-			cout << right << setw(12) << U[p][r];
+			raportWynikowy << right << setw(szerokoscWyswietlaniaLiczby) << U[p][r];
 		}
-		cout << endl;
+		raportWynikowy << endl;
 	}
 
-	cout << " Wektor Y:" << endl;
+	raportWynikowy << "Wektor Y:" << endl;
 	for (int p = 1; p <= n; p++)
-		cout << right << setw(8) << Y[p] << endl;
+		raportWynikowy << right << setw(szerokoscWyswietlaniaLiczby) << Y[p] << endl;
 
-	cout << " Wektor X:" << endl;
+	raportWynikowy << "Wektor X:" << endl;
 	for (int p = 1; p <= n; p++)
-		cout << right << setw(8) << X[p] << endl;
+		raportWynikowy << right << setw(szerokoscWyswietlaniaLiczby) << X[p] << endl;
+
+	raportWynikowy.close();
 }
 
 int main() {
@@ -158,14 +177,12 @@ int main() {
 	funkcjaA(A, B, n);
 	bool dziel = funkcjaB(A, L, U, n);
 	if (!dziel) 
-		return 0;
+		return 1;
 
 	dziel = funkcjaC(B, L, U, X, Y, n);
 	if (!dziel) 
-		return 0;
+		return 1;
 
 	funkcjaD(A, B, L, U, X, Y, n);
-
-	char x; cin >> x;
-	return 1;
+	return 0;
 }
