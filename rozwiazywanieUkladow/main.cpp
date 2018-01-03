@@ -14,7 +14,7 @@ void funkcjaA(vector< vector<double> >& A, vector<double>& B,
 	vector<double> tempB(n + 1);
 	A = tempA;
 	B = tempB;
-	ifstream plik("zestaw1.txt", ios::in);
+	ifstream plik("zestaw5.txt", ios::in);
 
 	for (int p = 1; p <= n; p++) {
 		for (int r = 1; r <= n; r++)
@@ -102,7 +102,7 @@ bool funkcjaC(vector<double> B, vector< vector<double> > L,
 		}
 		wynikSumy = 0.0;
 		for (int k = i + 1; k <= n; k++)
-			wynikSumy = U[i][k] * X[k];
+			wynikSumy += U[i][k] * X[k];
 
 		X[i] = (Y[i] - wynikSumy) / U[i][i];
 	}
